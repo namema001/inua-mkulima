@@ -9,7 +9,8 @@
   @if(!isMobile()){
   <div class="nav-links">
     <span class="logged-in-text"
-      >Logged in As: <strong class="name">{{ firstName | titlecase }}</strong></span
+      >Logged in As:
+      <strong class="name">{{ firstName | titlecase }}</strong></span
     >
     <button mat-button class="logout-btn" (click)="logout()">
       <mat-icon>logout</mat-icon>
