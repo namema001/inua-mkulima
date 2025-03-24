@@ -1,0 +1,53 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-image: url("./../../../assets/images/header.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0 30px;
+  margin-top: -16px;
+  background-color: white;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  cursor: pointer;
+
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.nav-links,
+.mobile-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  button {
+    color: var(--primary-color);
+
+    mat-icon {
+      font-size: 24px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .mobile-menu {
+    display: flex;
+  }
+}

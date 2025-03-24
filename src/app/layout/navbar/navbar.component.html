@@ -1,0 +1,43 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="logo-container" routerLink="/employee/dashboard">
+    <span class="logo-text">Inua Mkulima Subsidy Program</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  @if(!isMobile()){
+  <div class="nav-links">
+    <button
+      mat-icon-button
+      matTooltip="Profile"
+      matTooltipShowDelay="500"
+      [matMenuTriggerFor]="profileMenu"
+      aria-label="Profile"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+
+    <mat-menu #profileMenu="matMenu">
+      <button mat-menu-item class="mat-list-item" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span class="mat-list-span">Sign Out</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  } @if(isMobile()){
+  <div class="mobile-menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()" class="mat-list-item">
+        <mat-icon>logout</mat-icon>
+        <span class="mat-list-span">Sign Out</span>
+      </button>
+    </mat-menu>
+  </div>
+  }
+</mat-toolbar>

@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --primary-color: #000099;
+  --primary-font-family: "Poppins", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif !important;
+  font-optical-sizing: auto;
+  background-color: #f5f5f5;
+  scroll-behavior: smooth;
+}
+
+button,
+input,
+mat-card,
+mat-card-title,
+mat-card-subtitle,
+mat-toolbar,
+mat-form-field,
+mat-label,
+mat-input,
+mat-menu-item,
+mat-mdc-menu-content,
+mat-list,
+mat-accordion,
+mat-expansion-panel,
+mat-panel-title,
+mat-list-item,
+mat-label,
+mat-option,
+mat-select,
+mat-hint,
+mat-table {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+:root .alert-success {
+  --mdc-snackbar-container-color: #04a628;
+}
+
+:root .alert-error {
+  --mdc-snackbar-container-color: #f44336;
+}
