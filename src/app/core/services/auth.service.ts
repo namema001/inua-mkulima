@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { AuthRequest, AuthResponse } from '../interfaces/auth.model';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { AuthRequest, User } from '../interfaces/auth.model';
+import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { AlertService } from './alert.service';
 
 @Injectable({
@@ -10,16 +14,21 @@ import { AlertService } from './alert.service';
 })
 export class AuthService {
   private apiUrl = environment.authApiUrl;
+  private userSubject = new BehaviorSubject<User | null>(null);
+  user$ = this.userSubject.asObservable();
 
   constructor(private http: HttpClient, private alertService: AlertService) {}
 
-  login(authData: AuthRequest): Observable<AuthResponse> {
+  login(authData: AuthRequest): Observable<User> {
     return this.http
-      .post<AuthResponse>(this.apiUrl, authData, {
+      .post<User>(this.apiUrl, authData, {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       })
       .pipe(
-        tap((response) => this.storeToken(response.accessToken)),
+        tap((response) => {
+          this.storeToken(response.accessToken);
+          this.setUser(response); 
+        }),
         catchError((error: HttpErrorResponse) => this.handleError(error))
       );
   }
@@ -36,6 +45,10 @@ export class AuthService {
   private storeToken(token: string): void {
     const encodedToken = btoa(token);
     localStorage.setItem('accessToken', encodedToken);
+  }
+
+  private setUser(user: User): void {
+    this.userSubject.next(user);
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
@@ -61,7 +74,7 @@ export class AuthService {
           break;
       }
     }
-    this.alertService.showAlert(errorMessage, "error");
+    this.alertService.showAlert(errorMessage, 'error');
     return throwError(() => new Error(errorMessage));
   }
 }
