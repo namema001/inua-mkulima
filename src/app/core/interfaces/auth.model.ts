@@ -4,7 +4,7 @@ export interface AuthRequest {
   expiresInMins?: number;
 }
 
-export interface AuthResponse {
+export interface User {
   id: number;
   username: string;
   email: string;

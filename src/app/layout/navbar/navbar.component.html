@@ -5,25 +5,21 @@
 
   <span class="spacer"></span>
 
-  <!-- Desktop View -->
   @if(!isMobile()){
   <div class="nav-links">
     <span class="logged-in-text"
       >Logged in As:
-      <strong class="name">{{ firstName | titlecase }}</strong></span
+      <strong class="name">{{ user?.firstName | uppercase }}</strong></span
     >
     <button mat-button class="logout-btn" (click)="logout()">
       <mat-icon>logout</mat-icon>
       Logout
     </button>
   </div>
-  }
-
-  <!-- Mobile View -->
-  @if(isMobile()){
+  } @if(isMobile()){
   <div class="mobile-menu">
     <span class="logged-in-text mobile"
-      >Logged in As: {{ firstName | titlecase }}</span
+      >Logged in As: {{ user?.firstName | uppercase }}</span
     >
     <button mat-button class="logout-btn" (click)="logout()">
       <mat-icon>logout</mat-icon>
