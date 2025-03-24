@@ -1,0 +1,13 @@
+@if(isLoading()){
+<div class="overlay">
+  <mat-progress-spinner
+    mode="indeterminate"
+    diameter="50"
+    color="accent"
+    class="spinner"
+  ></mat-progress-spinner>
+  @if(message()){
+  <div class="message">{{ message() }}</div>
+  }
+</div>
+}

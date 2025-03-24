@@ -1,1 +1,115 @@
-<p>sign-in works!</p>
+<app-progress-spinner
+  [isLoading]="isAuthenticating"
+  [message]="authenticationMessage"
+></app-progress-spinner>
+<div class="landing-container">
+  <div class="left-side"></div>
+
+  <div class="right-side">
+    <mat-card class="sign-in-card">
+      <div class="header">
+        <div class="welcome-text">
+          <h3>WELCOME TO</h3>
+          <h2>Inua Mkulima -</h2>
+          <h2>Subsidiary Program</h2>
+        </div>
+        <div class="header-image">
+          <img
+            src="./../../../assets/images/green-leaves-white-background.png"
+            alt="Subsidiary Logo"
+          />
+        </div>
+      </div>
+
+      <form [formGroup]="signInForm" (ngSubmit)="authenticate()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            id="username"
+            type="text"
+            formControlName="username"
+          />
+          <mat-error
+            *ngIf="signInForm.controls['username'].hasError('required')"
+          >
+            Username is required.
+          </mat-error>
+          <mat-error
+            *ngIf="signInForm.controls['username'].hasError('minlength')"
+          >
+            Must be at least 3 characters.
+          </mat-error>
+          <mat-error
+            *ngIf="signInForm.controls['username'].hasError('maxlength')"
+          >
+            Cannot exceed 20 characters.
+          </mat-error>
+          <mat-error
+            *ngIf="signInForm.controls['username'].hasError('pattern')"
+          >
+            Only letters, numbers, dashes, and underscores allowed.
+          </mat-error>
+        </mat-form-field>
+
+        <div *ngIf="showPasswordField">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input
+              matInput
+              id="password"
+              [type]="hidePassword() ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="togglePasswordVisibility()"
+              type="button"
+            >
+              <mat-icon>{{
+                hidePassword() ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+            <mat-error
+              *ngIf="signInForm.controls['password'].hasError('required')"
+            >
+              Password is required.
+            </mat-error>
+            <mat-error
+              *ngIf="signInForm.controls['password'].hasError('minlength')"
+            >
+              Password must be at least 6 characters long.
+            </mat-error>
+            <mat-error
+              *ngIf="signInForm.controls['password'].hasError('maxlength')"
+            >
+              Cannot exceed 32 characters.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Action Button: Continue if password not shown; otherwise, Sign In -->
+        <button
+          mat-raised-button
+          class="full-width cont"
+          *ngIf="!showPasswordField"
+          (click)="continue()"
+          type="button"
+        >
+          Continue
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="full-width cont"
+          *ngIf="showPasswordField"
+          type="submit"
+        >
+          Sign In
+        </button>
+      </form>
+    </mat-card>
+  </div>
+</div>
