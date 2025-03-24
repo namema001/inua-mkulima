@@ -1,43 +1,34 @@
 <mat-toolbar color="primary" class="navbar">
-  <div class="logo-container" routerLink="/">
+  <div class="logo-container">
     <span class="logo-text">Inua Mkulima Subsidy Program</span>
   </div>
 
   <span class="spacer"></span>
 
+  <!-- Desktop View -->
   @if(!isMobile()){
   <div class="nav-links">
-    <button
-      mat-icon-button
-      matTooltip="Profile"
-      matTooltipShowDelay="500"
-      [matMenuTriggerFor]="profileMenu"
-      aria-label="Profile"
+    <span class="logged-in-text"
+      >Logged in As:
+      <strong class="name">{{ firstName | titlecase }}</strong></span
     >
-      <mat-icon>account_circle</mat-icon>
+    <button mat-button class="logout-btn" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
     </button>
-
-    <mat-menu #profileMenu="matMenu">
-      <button mat-menu-item class="mat-list-item" (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span class="mat-list-span">Sign Out</span>
-      </button>
-    </mat-menu>
   </div>
+  }
 
-  } @if(isMobile()){
+  <!-- Mobile View -->
+  @if(isMobile()){
   <div class="mobile-menu">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>menu</mat-icon>
+    <span class="logged-in-text mobile"
+      >Logged in As: {{ firstName | titlecase }}</span
+    >
+    <button mat-button class="logout-btn" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
     </button>
-
-    <mat-menu #menu="matMenu">
-      <mat-divider></mat-divider>
-      <button mat-menu-item (click)="logout()" class="mat-list-item">
-        <mat-icon>logout</mat-icon>
-        <span class="mat-list-span">Sign Out</span>
-      </button>
-    </mat-menu>
   </div>
   }
 </mat-toolbar>
