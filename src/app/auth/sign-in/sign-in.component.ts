@@ -15,7 +15,12 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [ReactiveFormsModule, MaterialModule, ProgressSpinnerComponent, CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    MaterialModule,
+    ProgressSpinnerComponent,
+    CommonModule,
+  ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
 })
@@ -55,14 +60,13 @@ export class SignInComponent {
     });
   }
 
-    continue() {
-      const usernameControl = this.signInForm.get('username');
-      if (usernameControl?.valid) {
-        this.showPasswordField = true;
-      } else {
-        usernameControl?.markAsTouched();
-      }
+  continue() {
+    if (this.signInForm.controls['username'].valid) {
+      this.showPasswordField = true;
+    } else {
+      this.signInForm.controls['username'].markAsTouched();
     }
+  }
 
   authenticate() {
     if (this.signInForm.valid) {

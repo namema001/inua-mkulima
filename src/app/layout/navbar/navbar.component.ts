@@ -3,15 +3,17 @@ import { MaterialModule } from '../../material.module';
 import { AuthService } from '../../core/services/auth.service';
 import { AlertService } from '../../core/services/alert.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MaterialModule],
+  imports: [MaterialModule, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+  firstName: string = 'JOHN';
   authService = inject(AuthService);
   alertService = inject(AlertService);
   router = inject(Router);

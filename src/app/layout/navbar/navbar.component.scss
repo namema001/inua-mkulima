@@ -5,8 +5,6 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 0 30px;
-  margin-top: -16px;
   background-color: white;
   color: white;
   position: sticky;
@@ -19,7 +17,6 @@
   align-items: center;
   margin-right: 16px;
   cursor: pointer;
-
   padding: 20px;
   border-radius: 8px;
 }
@@ -32,22 +29,35 @@
 .mobile-menu {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+}
 
-  button {
-    color: var(--primary-color);
+.logged-in-text {
+  font-size: 1rem;
+  font-weight: 500;
 
-    mat-icon {
-      font-size: 24px;
-    }
+  .name {
+    margin-left: 12px;
   }
 }
 
+.logout-btn {
+  display: flex;
+  background-color: rgba(245, 245, 245, 0.508);
+  margin-right: 10px;
+  align-items: center;
+  gap: 6px;
+  font-size: 1rem;
+  border: 1px solid #f4fffc;
+}
+
+.logout-btn mat-icon {
+  font-size: 20px;
+}
+
+/* Mobile Styling */
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  .mobile-menu {
-    display: flex;
+  .logged-in-text {
+    font-size: 0.85rem;
   }
 }
