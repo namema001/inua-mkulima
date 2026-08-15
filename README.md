@@ -84,6 +84,3 @@ Run npm install to install all dependencies.
 Run ng serve to start the development server.
 
 Open http://localhost:4200 in your web browser.
-
-Note
-Important: While the core functionality of the application is complete and fully operational, I did not have enough time to perfect the UI. Some aspects of the visual design might require further refinement if given time to finalize. The current focus was to ensure robust functionality and process flow.
